@@ -8,16 +8,16 @@
         <VerticalStackLayout>
             <VerticalStackLayout Padding="10">
                 <FlexLayout JustifyContent="SpaceBetween">
-                    <Label FontSize="20" Text="Cold Shower" />
+                    <Label FontSize="20" Text="{Binding Title}" />
                     <Label
                         FontSize="20"
                         HorizontalTextAlignment="End"
-                        Text="Lvl 1" />
+                        Text="{Binding Level, StringFormat='Lvl {0}'}" />
                 </FlexLayout>
             </VerticalStackLayout>
             <ProgressBar
                 Margin="-8"
-                Progress="0.5"
+                Progress="{Binding Progress}"
                 ProgressColor="Lime"
                 ScaleY="2.2" />
         </VerticalStackLayout>
