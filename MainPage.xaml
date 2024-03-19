@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ApostlePath.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:ApostlePath.View"
+    BackgroundColor="{StaticResource Primary}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label
+                Margin="0,50,0,0"
+                FontSize="25"
+                HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Welcome Iwan" />
+                        <Span Text=" The Apostle" TextColor="{StaticResource TitleYellow}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text="Discipline Level" />
+
+            <Label
+                FontSize="60"
+                HorizontalTextAlignment="Center"
+                Text="50"
+                TextColor="{StaticResource TitleYellow}" />
+
+            <Border
+                Padding="10"
+                BackgroundColor="{StaticResource Secondary}"
+                StrokeShape="RoundRectangle 10,10,10,10">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="RubikItalic" Text="“As iron sharpens iron, so one person sharpens another.”" />
+                            <Span Text=" - Proverbs 27, 17" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Border>
+
+            <Label FontSize="20" Text="Your Daily Quests:" />
+
+            <view:CompactQuestView />
+            <view:CompactQuestView />
+            <view:CompactQuestView />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
