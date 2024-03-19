@@ -4,7 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:ApostlePath.View"
+    xmlns:viewModel="clr-namespace:ApostlePath.ViewModel"
     BackgroundColor="{StaticResource Primary}">
+    <ContentPage.BindingContext>
+        <viewModel:MainViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
@@ -47,9 +51,13 @@
 
             <Label FontSize="20" Text="Your Daily Quests:" />
 
-            <view:CompactQuestView />
-            <view:CompactQuestView />
-            <view:CompactQuestView />
+            <CollectionView ItemsSource="{Binding Quests}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type viewModel:CompactQuestViewModel}">
+                        <view:CompactQuestView Margin="0,10" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>
