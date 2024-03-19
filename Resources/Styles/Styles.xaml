@@ -3,5 +3,13 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontFamily" Value="Rubik" />
+    </Style>
+
+    <Style x:Key="GreenButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ProgressLime}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontFamily" Value="Rubik" />
     </Style>
 </ResourceDictionary>

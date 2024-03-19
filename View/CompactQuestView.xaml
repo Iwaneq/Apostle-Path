@@ -18,7 +18,7 @@
             <ProgressBar
                 Margin="-8"
                 Progress="{Binding Progress}"
-                ProgressColor="Lime"
+                ProgressColor="{StaticResource ProgressLime}"
                 ScaleY="2.2" />
         </VerticalStackLayout>
 

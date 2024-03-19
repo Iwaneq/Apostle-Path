@@ -7,6 +7,7 @@
     <Color x:Key="Primary">#272727</Color>
     <Color x:Key="TitleYellow">#FFE600</Color>
     <Color x:Key="Secondary">#606060</Color>
+    <Color x:Key="ProgressLime">Lime</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
@@ -16,6 +17,7 @@
 
     <SolidColorBrush x:Key="TitleYellowBrush" Color="{StaticResource TitleYellow}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="ProgressLimeBrush" Color="{StaticResource ProgressLime}" />
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />
 </ResourceDictionary>
