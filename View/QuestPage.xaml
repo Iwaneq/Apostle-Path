@@ -3,11 +3,62 @@
     x:Class="ApostlePath.View.QuestPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="QuestPage">
-    <VerticalStackLayout>
+    Title="QuestPage"
+    BackgroundColor="{StaticResource Primary}">
+    <VerticalStackLayout Padding="20,0">
         <Label
+            Margin="0,15"
+            FontSize="24"
+            Text="Cold Shower:" />
+
+        <Border
+            Margin="0,15"
+            Padding="8"
+            BackgroundColor="{StaticResource Secondary}"
+            StrokeShape="RoundRectangle 10,10,10,10">
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label FontSize="20" Text="Level" />
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="End"
+                    Text="1" />
+            </FlexLayout>
+        </Border>
+
+        <Border
+            Margin="0,15"
+            Padding="8"
+            BackgroundColor="{StaticResource Secondary}"
+            StrokeShape="RoundRectangle 10,10,10,10">
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Label FontSize="20" Text="Experience" />
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="End"
+                    Text="3/7" />
+            </FlexLayout>
+        </Border>
+
+        <Label
+            Margin="0,15,0,5"
+            FontSize="20"
+            Text="Today's Challenge:" />
+        <Border
+            Margin="0,15"
+            Padding="8"
+            BackgroundColor="{StaticResource Secondary}"
+            MinimumHeightRequest="120"
+            StrokeShape="RoundRectangle 10,10,10,10">
+            <Label FontSize="20" Text="I will spend one second more in my cold shower today" />
+        </Border>
+
+        <Button
+            Margin="0,10"
             HorizontalOptions="Center"
-            Text="Cold Shower"
+            Style="{x:StaticResource GreenButton}"
+            Text="Mark As Done"
             VerticalOptions="Center" />
+
+
     </VerticalStackLayout>
 </ContentPage>

@@ -18,8 +18,11 @@
                 HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Welcome Iwan" />
-                        <Span Text=" The Apostle" TextColor="{StaticResource TitleYellow}" />
+                        <Span FontFamily="Rubik" Text="Welcome Iwan" />
+                        <Span
+                            FontFamily="Rubik"
+                            Text=" The Apostle"
+                            TextColor="{StaticResource TitleYellow}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -43,7 +46,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontFamily="RubikItalic" Text="“As iron sharpens iron, so one person sharpens another.”" />
-                            <Span Text=" - Proverbs 27, 17" />
+                            <Span FontFamily="Rubik" Text=" - Proverbs 27, 17" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
