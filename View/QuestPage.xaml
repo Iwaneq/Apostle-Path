@@ -9,7 +9,7 @@
         <Label
             Margin="0,15"
             FontSize="24"
-            Text="Cold Shower:" />
+            Text="{Binding Title, StringFormat='{0}:'}" />
 
         <Border
             Margin="0,15"
@@ -21,7 +21,7 @@
                 <Label
                     FontSize="20"
                     HorizontalTextAlignment="End"
-                    Text="1" />
+                    Text="{Binding Level}" />
             </FlexLayout>
         </Border>
 
@@ -35,7 +35,7 @@
                 <Label
                     FontSize="20"
                     HorizontalTextAlignment="End"
-                    Text="3/7" />
+                    Text="{Binding Experience, StringFormat='{0}/7'}" />
             </FlexLayout>
         </Border>
 
@@ -49,12 +49,14 @@
             BackgroundColor="{StaticResource Secondary}"
             MinimumHeightRequest="120"
             StrokeShape="RoundRectangle 10,10,10,10">
-            <Label FontSize="20" Text="I will spend one second more in my cold shower today" />
+            <Label FontSize="20" Text="{Binding Challenge}" />
         </Border>
 
         <Button
             Margin="0,10"
+            Command="{Binding MarkAsDoneCommand}"
             HorizontalOptions="Center"
+            IsVisible="{Binding IsMarkAsDoneButtonVisible}"
             Style="{x:StaticResource GreenButton}"
             Text="Mark As Done"
             VerticalOptions="Center" />

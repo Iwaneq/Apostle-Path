@@ -3,6 +3,9 @@
     x:Class="ApostlePath.View.CompactQuestView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding NavigateToQuestPageCommand}" NumberOfTapsRequired="1" />
+    </ContentView.GestureRecognizers>
     <Border BackgroundColor="{StaticResource Secondary}" StrokeShape="RoundRectangle 10,10,10,10">
 
         <VerticalStackLayout>
