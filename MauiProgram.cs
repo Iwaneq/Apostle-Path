@@ -1,5 +1,8 @@
-﻿using ApostlePath.View;
+﻿using ApostlePath.Data;
+using ApostlePath.View;
 using ApostlePath.ViewModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace ApostlePath
@@ -19,6 +22,8 @@ namespace ApostlePath
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
+            builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
 
             builder.Services.AddViewModel<QuestViewModel, QuestPage>();
 #endif
