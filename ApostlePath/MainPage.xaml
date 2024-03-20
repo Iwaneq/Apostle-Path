@@ -6,9 +6,6 @@
     xmlns:view="clr-namespace:ApostlePath.View"
     xmlns:viewModel="clr-namespace:ApostlePath.ViewModel"
     BackgroundColor="{StaticResource Primary}">
-    <ContentPage.BindingContext>
-        <viewModel:MainViewModel />
-    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">

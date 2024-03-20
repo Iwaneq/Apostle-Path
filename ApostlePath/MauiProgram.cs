@@ -1,4 +1,5 @@
 ﻿using ApostlePath.DataAccess.Data;
+using ApostlePath.DataAccess.Repository;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,9 @@ namespace ApostlePath
 
             builder.Services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source="+Path.Combine(FileSystem.Current.AppDataDirectory, "QuestsDB.db")));
 
+            builder.Services.AddScoped<IQuestsRepository, QuestsRepository>();
+
+            builder.Services.AddViewModel<MainViewModel, MainPage>();
             builder.Services.AddViewModel<QuestViewModel, QuestPage>();
 
             //Ensure database exists
