@@ -1,4 +1,4 @@
-﻿using ApostlePath.Data;
+﻿using ApostlePath.DataAccess.Data;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +20,17 @@ namespace ApostlePath
                     fonts.AddFont("Rubik-Italic.ttf", "RubikItalic");
                 });
 
-#if DEBUG
     		builder.Logging.AddDebug();
 
-            builder.Services.AddDbContext<DataContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("SQLite")));
+            builder.Services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source="+Path.Combine(FileSystem.Current.AppDataDirectory, "QuestsDB.db")));
 
             builder.Services.AddViewModel<QuestViewModel, QuestPage>();
-#endif
+
+            //Ensure database exists
+            using(var scope =  builder.Services.BuildServiceProvider())
+            {
+                scope.GetRequiredService<DataContext>().Database.Migrate();
+            }
 
             return builder.Build();
         }
