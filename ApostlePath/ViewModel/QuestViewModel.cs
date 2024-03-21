@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ApostlePath.ViewModel
 {
+    [QueryProperty(nameof(Id), "Id")]
     [QueryProperty(nameof(Title), "Title")]
     [QueryProperty(nameof(Level), "Level")]
     [QueryProperty(nameof(Experience), "Experience")]
@@ -12,6 +13,7 @@ namespace ApostlePath.ViewModel
     {
         public IRelayCommand MarkAsDoneCommand { get; set; }
 
+        public int Id { get; set; }
 
         private string _title = string.Empty;
         public string Title

@@ -6,7 +6,8 @@
     xmlns:local="clr-namespace:ApostlePath"
     xmlns:view="clr-namespace:ApostlePath.View"
     Title="ApostlePath"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
