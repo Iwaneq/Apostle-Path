@@ -1,5 +1,6 @@
 ﻿using ApostlePath.DataAccess.Data;
 using ApostlePath.DataAccess.Repository;
+using ApostlePath.Factory;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -25,10 +26,13 @@ namespace ApostlePath
 
             builder.Services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source="+Path.Combine(FileSystem.Current.AppDataDirectory, "QuestsDB.db")));
 
+            builder.Services.AddScoped<IQuestViewModelFactory, QuestViewModelFactory>();
+
             builder.Services.AddScoped<IQuestsRepository, QuestsRepository>();
 
-            builder.Services.AddViewModel<MainViewModel, MainPage>();
-            builder.Services.AddViewModel<QuestViewModel, QuestPage>();
+            builder.Services.AddViewModelWithView<CompactQuestViewModel, CompactQuestView>();
+            builder.Services.AddViewModelWithPage<MainViewModel, MainPage>();
+            builder.Services.AddViewModelWithPage<QuestViewModel, QuestPage>();
 
             //Ensure database exists
             using(var scope =  builder.Services.BuildServiceProvider())
@@ -46,10 +50,16 @@ namespace ApostlePath
             return builder.Build();
         }
 
-        private static void AddViewModel<TViewModel, TView>(this IServiceCollection services) where TView : ContentPage, new() where TViewModel : class
+        private static void AddViewModelWithPage<TViewModel, TView>(this IServiceCollection services) where TView : ContentPage, new() where TViewModel : class
         {
             services.AddTransient<TViewModel>();
             services.AddTransient(s => new TView() { BindingContext = s.GetRequiredService<TViewModel>()});
+        }
+
+        private static void AddViewModelWithView<TViewModel, TView>(this IServiceCollection services) where TView : ContentView, new() where TViewModel : class
+        {
+            services.AddTransient<TViewModel>();
+            services.AddTransient(s => new TView() { BindingContext = s.GetRequiredService<TViewModel>() });
         }
     }
 }

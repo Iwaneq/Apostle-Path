@@ -1,4 +1,5 @@
 ﻿using ApostlePath.DataAccess.Repository;
+using ApostlePath.Factory;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
@@ -7,6 +8,7 @@ namespace ApostlePath.ViewModel
     public class MainViewModel : ObservableObject
     {
         private readonly IQuestsRepository _questsRepository;
+        private readonly IQuestViewModelFactory _questViewModelFactory;
 
         private ObservableCollection<CompactQuestViewModel> _quests = new ObservableCollection<CompactQuestViewModel>();
         public ObservableCollection<CompactQuestViewModel> Quests
@@ -19,9 +21,10 @@ namespace ApostlePath.ViewModel
             }
         }
 
-        public MainViewModel(IQuestsRepository questsRepository)
+        public MainViewModel(IQuestsRepository questsRepository, IQuestViewModelFactory questViewModelFactory)
         {
             _questsRepository = questsRepository;
+            _questViewModelFactory = questViewModelFactory;
 
             LoadQuests();
         }
@@ -32,15 +35,8 @@ namespace ApostlePath.ViewModel
 
             foreach(var q  in quests)
             {
-                Quests.Add(new CompactQuestViewModel()
-                {
-                    Title = q.Title,
-                    Level = q.Level,
-                    Progress = q.Experience / 7m
-                });
+                Quests.Add(_questViewModelFactory.CreateCompactQuestViewModel(q.Id, q.Title, q.Level, q.Experience / 7m));
             }
-
-            //OnPropertyChanged(nameof(Quests));
         }
     }
 }
