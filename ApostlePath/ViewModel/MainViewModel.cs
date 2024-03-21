@@ -28,7 +28,7 @@ namespace ApostlePath.ViewModel
 
         private void LoadQuests()
         {
-            var quests = _questsRepository.GetQuests();
+            var quests = _questsRepository.GetQuests().ToList();
 
             foreach(var q  in quests)
             {
@@ -36,7 +36,7 @@ namespace ApostlePath.ViewModel
                 {
                     Title = q.Title,
                     Level = q.Level,
-                    Progress = q.Experience / 7
+                    Progress = q.Experience / 7m
                 });
             }
 

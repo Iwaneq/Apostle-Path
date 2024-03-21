@@ -33,8 +33,15 @@ namespace ApostlePath
             //Ensure database exists
             using(var scope =  builder.Services.BuildServiceProvider())
             {
-                scope.GetRequiredService<DataContext>().Database.Migrate();
+                var dataContext = scope.GetRequiredService<DataContext>();
+                dataContext.Database.Migrate();
+
+#if DEBUG
+                Task.Run(dataContext.SeedData).Wait();
+#endif
             }
+
+
 
             return builder.Build();
         }
