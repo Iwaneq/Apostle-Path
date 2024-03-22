@@ -3,6 +3,7 @@ using ApostlePath.DataAccess.Repository;
 using ApostlePath.Factory;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
+using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -16,6 +17,7 @@ namespace ApostlePath
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("Rubik.ttf", "Rubik");
