@@ -3,11 +3,15 @@
     x:Class="ApostlePath.App"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ApostlePath.Converter"
     xmlns:local="clr-namespace:ApostlePath"
     xmlns:view="clr-namespace:ApostlePath.View"
     xmlns:viewModel="clr-namespace:ApostlePath.ViewModel">
     <Application.Resources>
+
         <ResourceDictionary>
+
+            <converter:DisciplineTitleToColorConverter x:Key="DisciplineTitleToColorConverter" />
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

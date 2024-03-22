@@ -1,4 +1,5 @@
-﻿using ApostlePath.DataAccess.Repository;
+﻿using ApostlePath.DataAccess.Dictionary;
+using ApostlePath.DataAccess.Repository;
 using ApostlePath.Factory;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -21,11 +22,11 @@ namespace ApostlePath.ViewModel
             {
                 _quests = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(DisciplineLevel));
             }
         }
 
         public int DisciplineLevel => Quests.Sum(x => x.Level);
+        public string DisciplineTitle => GetDisciplineTitle();
 
         public MainViewModel(IQuestsRepository questsRepository, IQuestViewModelFactory questViewModelFactory)
         {
@@ -47,6 +48,12 @@ namespace ApostlePath.ViewModel
             }
 
             OnPropertyChanged(nameof(DisciplineLevel));
+            OnPropertyChanged(nameof(DisciplineTitle));
+        }
+
+        private string GetDisciplineTitle()
+        {
+            return DisciplineTitleDictionary.DisciplineTitles.Where(x => x.Key <= DisciplineLevel).LastOrDefault().Value;
         }
     }
 }
