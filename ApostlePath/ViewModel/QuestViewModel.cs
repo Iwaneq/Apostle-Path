@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using ApostlePath.DataAccess.Model;
+using ApostlePath.DataAccess.Repository;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace ApostlePath.ViewModel
@@ -11,7 +13,9 @@ namespace ApostlePath.ViewModel
     [QueryProperty(nameof(LastProgress), "LastProgress")]
     public class QuestViewModel : ObservableObject
     {
-        public IRelayCommand MarkAsDoneCommand { get; set; }
+        private readonly IQuestsRepository _questsRepository;
+
+        public IAsyncRelayCommand MarkAsDoneCommand { get; set; }
 
         public int Id { get; set; }
 
@@ -77,14 +81,36 @@ namespace ApostlePath.ViewModel
 
         public bool IsMarkAsDoneButtonVisible => DateTime.UtcNow.Date - LastProgress.Date != TimeSpan.FromDays(0);
 
-        public QuestViewModel()
+        public QuestViewModel(IQuestsRepository questsRepository)
         {
-            MarkAsDoneCommand = new RelayCommand(MarkAsDone);
+            _questsRepository = questsRepository;
+
+            MarkAsDoneCommand = new AsyncRelayCommand(MarkAsDone);
         }
 
-        private void MarkAsDone()
+        private async Task MarkAsDone()
         {
             LastProgress = DateTime.UtcNow.Date;
+            Experience += 1;
+            if(Experience == 7)
+            {
+                Level += 1;
+                Experience = 0;
+            }
+
+            Quest quest = new Quest()
+            {
+                Id = Id,
+                Title = Title,
+                Challenge = Challenge,
+                Experience = Experience,
+                LastProgress = LastProgress,
+                Level = Level
+            };
+
+            await _questsRepository.UpdateQuest(quest);
+
+            await Shell.Current.GoToAsync("..");
         }
     }
 }
