@@ -26,7 +26,12 @@ namespace ApostlePath
 
     		builder.Logging.AddDebug();
 
-            builder.Services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source="+Path.Combine(FileSystem.Current.AppDataDirectory, "QuestsDB.db")));
+            builder.Services.AddDbContext<DataContext>(x =>
+            {
+                x.UseSqlite("Data Source=" + Path.Combine(FileSystem.Current.AppDataDirectory, "QuestsDB.db"));
+                x.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                x.EnableSensitiveDataLogging(true);
+            });
 
             builder.Services.AddScoped<IQuestViewModelFactory, QuestViewModelFactory>();
 
@@ -35,6 +40,7 @@ namespace ApostlePath
             builder.Services.AddViewModelWithView<CompactQuestViewModel, CompactQuestView>();
             builder.Services.AddViewModelWithPage<MainViewModel, MainPage>();
             builder.Services.AddViewModelWithPage<QuestViewModel, QuestPage>();
+            builder.Services.AddViewModelWithPage<CreateQuestViewModel, CreateQuestPage>();
 
             //Ensure database exists
             using(var scope =  builder.Services.BuildServiceProvider())
