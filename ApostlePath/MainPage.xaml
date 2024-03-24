@@ -71,6 +71,14 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <Button
+                Margin="0,10"
+                Command="{Binding NavigateToCreateQuestPageCommand}"
+                HorizontalOptions="Center"
+                Style="{x:StaticResource GreenButton}"
+                Text="Add new"
+                VerticalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 
