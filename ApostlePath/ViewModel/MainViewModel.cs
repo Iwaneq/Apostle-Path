@@ -13,6 +13,7 @@ namespace ApostlePath.ViewModel
         private readonly IQuestViewModelFactory _questViewModelFactory;
 
         public IRelayCommand ReloadQuestsCommand { get; set; }
+        public IAsyncRelayCommand NavigateToLevelsInfoPageCommand { get; set; }
 
         private ObservableCollection<CompactQuestViewModel> _quests = new ObservableCollection<CompactQuestViewModel>();
         public ObservableCollection<CompactQuestViewModel> Quests
@@ -34,6 +35,7 @@ namespace ApostlePath.ViewModel
             _questViewModelFactory = questViewModelFactory;
 
             ReloadQuestsCommand = new RelayCommand(LoadQuests);
+            NavigateToLevelsInfoPageCommand = new AsyncRelayCommand(NavigateToLevelsInfoPage);
         }
 
         private void LoadQuests()
@@ -54,6 +56,11 @@ namespace ApostlePath.ViewModel
         private string GetDisciplineTitle()
         {
             return DisciplineTitleDictionary.DisciplineTitles.Where(x => x.Key <= DisciplineLevel).LastOrDefault().Value;
+        }
+
+        private async Task NavigateToLevelsInfoPage()
+        {
+            await Shell.Current.GoToAsync("LevelsInfoPage");
         }
     }
 }
