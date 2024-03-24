@@ -6,6 +6,11 @@
 
     <Color x:Key="Primary">#272727</Color>
     <Color x:Key="TitleYellow">#FFE600</Color>
+    <Color x:Key="TitleGreen">#3F945C</Color>
+    <Color x:Key="TitleBlue">#0F00BD</Color>
+    <Color x:Key="TitleRed">#FF0000</Color>
+    <Color x:Key="TitleLightBlue">#00FFD1</Color>
+    <Color x:Key="TitlePurple">#CC00FF</Color>
     <Color x:Key="Secondary">#606060</Color>
     <Color x:Key="ProgressLime">Lime</Color>
 
@@ -16,6 +21,11 @@
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
     <SolidColorBrush x:Key="TitleYellowBrush" Color="{StaticResource TitleYellow}" />
+    <SolidColorBrush x:Key="TitleGreenBrush" Color="{StaticResource TitleGreen}" />
+    <SolidColorBrush x:Key="TitleBlueBrush" Color="{StaticResource TitleBlue}" />
+    <SolidColorBrush x:Key="TitleRedBrush" Color="{StaticResource TitleRed}" />
+    <SolidColorBrush x:Key="TitleLightBlueBrush" Color="{StaticResource TitleLightBlue}" />
+    <SolidColorBrush x:Key="TitlePurpleBrush" Color="{StaticResource TitlePurple}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="ProgressLimeBrush" Color="{StaticResource ProgressLime}" />
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />

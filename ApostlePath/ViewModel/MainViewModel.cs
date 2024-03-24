@@ -1,4 +1,5 @@
-﻿using ApostlePath.DataAccess.Repository;
+﻿using ApostlePath.DataAccess.Dictionary;
+using ApostlePath.DataAccess.Repository;
 using ApostlePath.Factory;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,6 +13,7 @@ namespace ApostlePath.ViewModel
         private readonly IQuestViewModelFactory _questViewModelFactory;
 
         public IRelayCommand ReloadQuestsCommand { get; set; }
+        public IAsyncRelayCommand NavigateToLevelsInfoPageCommand { get; set; }
 
         private ObservableCollection<CompactQuestViewModel> _quests = new ObservableCollection<CompactQuestViewModel>();
         public ObservableCollection<CompactQuestViewModel> Quests
@@ -21,11 +23,11 @@ namespace ApostlePath.ViewModel
             {
                 _quests = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(DisciplineLevel));
             }
         }
 
         public int DisciplineLevel => Quests.Sum(x => x.Level);
+        public string DisciplineTitle => GetDisciplineTitle();
 
         public MainViewModel(IQuestsRepository questsRepository, IQuestViewModelFactory questViewModelFactory)
         {
@@ -33,6 +35,7 @@ namespace ApostlePath.ViewModel
             _questViewModelFactory = questViewModelFactory;
 
             ReloadQuestsCommand = new RelayCommand(LoadQuests);
+            NavigateToLevelsInfoPageCommand = new AsyncRelayCommand(NavigateToLevelsInfoPage);
         }
 
         private void LoadQuests()
@@ -47,6 +50,17 @@ namespace ApostlePath.ViewModel
             }
 
             OnPropertyChanged(nameof(DisciplineLevel));
+            OnPropertyChanged(nameof(DisciplineTitle));
+        }
+
+        private string GetDisciplineTitle()
+        {
+            return DisciplineTitleDictionary.DisciplineTitles.Where(x => x.Key <= DisciplineLevel).LastOrDefault().Value;
+        }
+
+        private async Task NavigateToLevelsInfoPage()
+        {
+            await Shell.Current.GoToAsync("LevelsInfoPage");
         }
     }
 }

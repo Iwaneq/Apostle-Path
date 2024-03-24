@@ -9,6 +9,7 @@ namespace ApostlePath
             InitializeComponent();
 
             Routing.RegisterRoute("QuestPage", typeof(QuestPage));
+            Routing.RegisterRoute("LevelsInfoPage", typeof(LevelsInfoPage));
         }
     }
 }

@@ -22,8 +22,8 @@
                         <Span FontFamily="Rubik" Text="Welcome Iwan" />
                         <Span
                             FontFamily="Rubik"
-                            Text=" The Apostle"
-                            TextColor="{StaticResource TitleYellow}" />
+                            Text="{Binding DisciplineTitle, StringFormat=' The {0}'}"
+                            TextColor="{Binding DisciplineTitle, Converter={StaticResource DisciplineTitleToColorConverter}}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -31,13 +31,21 @@
             <Label
                 FontSize="30"
                 HorizontalTextAlignment="Center"
-                Text="Discipline Level" />
+                Text="Discipline Level">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToLevelsInfoPageCommand}" NumberOfTapsRequired="2" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <Label
                 FontSize="60"
                 HorizontalTextAlignment="Center"
                 Text="{Binding DisciplineLevel}"
-                TextColor="{StaticResource TitleYellow}" />
+                TextColor="{Binding DisciplineTitle, Converter={StaticResource DisciplineTitleToColorConverter}}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToLevelsInfoPageCommand}" NumberOfTapsRequired="2" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <Border
                 Padding="10"
