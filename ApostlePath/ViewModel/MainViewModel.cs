@@ -14,6 +14,7 @@ namespace ApostlePath.ViewModel
 
         public IRelayCommand ReloadQuestsCommand { get; set; }
         public IAsyncRelayCommand NavigateToLevelsInfoPageCommand { get; set; }
+        public IAsyncRelayCommand NavigateToCreateQuestPageCommand {  get; set; }
 
         private ObservableCollection<CompactQuestViewModel> _quests = new ObservableCollection<CompactQuestViewModel>();
         public ObservableCollection<CompactQuestViewModel> Quests
@@ -36,6 +37,7 @@ namespace ApostlePath.ViewModel
 
             ReloadQuestsCommand = new RelayCommand(LoadQuests);
             NavigateToLevelsInfoPageCommand = new AsyncRelayCommand(NavigateToLevelsInfoPage);
+            NavigateToCreateQuestPageCommand = new AsyncRelayCommand(NavigateToCreateQuestPage);
         }
 
         private void LoadQuests()
@@ -61,6 +63,11 @@ namespace ApostlePath.ViewModel
         private async Task NavigateToLevelsInfoPage()
         {
             await Shell.Current.GoToAsync("LevelsInfoPage");
+        }
+
+        private async Task NavigateToCreateQuestPage()
+        {
+            await Shell.Current.GoToAsync("CreateQuestPage");
         }
     }
 }

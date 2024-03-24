@@ -10,6 +10,7 @@ namespace ApostlePath
 
             Routing.RegisterRoute("QuestPage", typeof(QuestPage));
             Routing.RegisterRoute("LevelsInfoPage", typeof(LevelsInfoPage));
+            Routing.RegisterRoute("CreateQuestPage", typeof(CreateQuestPage));
         }
     }
 }

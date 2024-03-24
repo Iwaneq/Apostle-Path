@@ -33,16 +33,21 @@ namespace ApostlePath.DataAccess.Repository
 
         public async Task<Quest> GetQuest(int id)
         {
-            return await _dataContext.Quests.AsNoTracking().Where(quest => quest.Id == id).FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
+            return await _dataContext.Quests
+                .AsNoTracking()
+                .Where(quest => quest.Id == id)
+                .FirstOrDefaultAsync() ?? throw new KeyNotFoundException();
         }
 
         public IEnumerable<Quest> GetQuests()
         {
-            return _dataContext.Quests.AsNoTracking();
+            return _dataContext.Quests
+                .AsNoTracking();
         }
 
         public async Task UpdateQuest(Quest quest)
         {
+            _dataContext.ChangeTracker.Clear();
             _dataContext.Update(quest);
             await _dataContext.SaveChangesAsync();
         }
