@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ApostlePath.View.UpdateChallengeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+    <Border Padding="20" Background="{StaticResource Primary}">
+        <VerticalStackLayout>
+            <Label Margin="0,15" Text="Congratulations!&#10;How can you make it 1% harder the next day?" />
+            <Border
+                Margin="0,15"
+                Padding="8"
+                BackgroundColor="{StaticResource Secondary}"
+                HorizontalOptions="Center"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                WidthRequest="300">
+                <Entry Text="{Binding Challenge, Mode=OneWayToSource}" />
+            </Border>
+            <Button
+                Margin="0,15"
+                Clicked="Button_Clicked"
+                HorizontalOptions="Center"
+                MaximumWidthRequest="300"
+                Style="{StaticResource GreenButton}"
+                Text="Save" />
+        </VerticalStackLayout>
+    </Border>
+</toolkit:Popup>
