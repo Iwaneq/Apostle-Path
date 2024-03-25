@@ -9,8 +9,11 @@ namespace ApostlePath.DataAccess.Data
 
         public DataContext(DbContextOptions options) : base(options) { }
 
+        public DataContext() { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlite("Data Source=QuestsDB.db");
             base.OnConfiguring(optionsBuilder);
         }
 
