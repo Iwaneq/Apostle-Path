@@ -15,5 +15,6 @@ namespace ApostlePath.DataAccess.Model
         [MaxLength(100)]
         public string Challenge { get; set; } = string.Empty;
         public DateTime LastProgress { get; set; }
+        public DateTime LastChecked { get; set; }
     }
 }
