@@ -90,6 +90,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\AskForNameView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\CompactQuestView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
