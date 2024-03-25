@@ -54,8 +54,8 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span FontFamily="RubikItalic" Text="“As iron sharpens iron, so one person sharpens another.”" />
-                            <Span FontFamily="Rubik" Text=" - Proverbs 27, 17" />
+                            <Span FontFamily="RubikItalic" Text="{Binding Quote, StringFormat='“{0}”'}" />
+                            <Span FontFamily="Rubik" Text="{Binding Verse, StringFormat=' - {0}'}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

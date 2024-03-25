@@ -32,6 +32,21 @@ namespace ApostlePath.ViewModel
         public int DisciplineLevel => Quests.Sum(x => x.Level);
         public string DisciplineTitle => GetDisciplineTitle();
         public string Name => Preferences.Get("Name", "");
+        public string Quote => QuotesDictionary.Quotes.ElementAt(QuoteIndex).Key;
+        public string Verse => QuotesDictionary.Quotes.ElementAt(QuoteIndex).Value;
+
+        private int _quoteIndex;
+        public int QuoteIndex
+        {
+            get { return _quoteIndex; }
+            set
+            {
+                _quoteIndex = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Quote));
+                OnPropertyChanged(nameof(Verse));
+            }
+        }
 
         public MainViewModel(IQuestsRepository questsRepository, IQuestViewModelFactory questViewModelFactory)
         {
@@ -47,6 +62,8 @@ namespace ApostlePath.ViewModel
             {
                 Shell.Current.GoToAsync("/AskForName");
             }
+
+            LoadQuote();
         }
 
         private void LoadQuests()
@@ -63,6 +80,12 @@ namespace ApostlePath.ViewModel
             OnPropertyChanged(nameof(DisciplineLevel));
             OnPropertyChanged(nameof(DisciplineTitle));
             OnPropertyChanged(nameof(Name));
+        }
+
+        private void LoadQuote()
+        {
+            var random = new Random();
+            QuoteIndex = random.Next(0, QuotesDictionary.Quotes.Count - 1);
         }
 
         private string GetDisciplineTitle()
