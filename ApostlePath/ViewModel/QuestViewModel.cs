@@ -1,5 +1,7 @@
 ﻿using ApostlePath.DataAccess.Model;
 using ApostlePath.DataAccess.Repository;
+using ApostlePath.View;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -90,6 +92,11 @@ namespace ApostlePath.ViewModel
 
         private async Task MarkAsDone()
         {
+            var result = await Shell.Current.ShowPopupAsync(new UpdateChallengeView());
+            bool popupResult = (bool)result!;
+
+            if (popupResult != true) return;
+
             LastProgress = DateTime.UtcNow.Date;
             Experience += 1;
             if(Experience == 7)
