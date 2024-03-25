@@ -1,6 +1,7 @@
 ﻿using ApostlePath.DataAccess.Data;
 using ApostlePath.DataAccess.Repository;
 using ApostlePath.Factory;
+using ApostlePath.Services;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
 using CommunityToolkit.Maui;
@@ -37,6 +38,7 @@ namespace ApostlePath
             builder.Services.AddScoped<IQuestViewModelFactory, QuestViewModelFactory>();
 
             builder.Services.AddScoped<IQuestsRepository, QuestsRepository>();
+            builder.Services.AddScoped<IQuestProgressChecker, QuestProgressChecker>();
 
             builder.Services.AddViewModelWithView<CompactQuestViewModel, CompactQuestView>();
             builder.Services.AddViewModelWithPage<MainViewModel, MainPage>();
@@ -53,6 +55,8 @@ namespace ApostlePath
 #if DEBUG
                 Task.Run(dataContext.SeedData).Wait();
 #endif
+                var questChecker = scope.GetRequiredService<IQuestProgressChecker>();
+                Task.Run(questChecker.CheckProgress).Wait();
             }
 
             return builder.Build();
