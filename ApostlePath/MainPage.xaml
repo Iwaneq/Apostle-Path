@@ -54,8 +54,8 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span FontFamily="RubikItalic" Text="“”" />
-                            <Span FontFamily="Rubik" Text=" - " />
+                            <Span FontFamily="RubikItalic" Text="{Binding Quote, StringFormat='“{0}”'}" />
+                            <Span FontFamily="Rubik" Text="{Binding Verse, StringFormat=' - {0}'}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
