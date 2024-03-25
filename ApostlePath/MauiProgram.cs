@@ -4,6 +4,7 @@ using ApostlePath.Factory;
 using ApostlePath.View;
 using ApostlePath.ViewModel;
 using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -41,6 +42,7 @@ namespace ApostlePath
             builder.Services.AddViewModelWithPage<MainViewModel, MainPage>();
             builder.Services.AddViewModelWithPage<QuestViewModel, QuestPage>();
             builder.Services.AddViewModelWithPage<CreateQuestViewModel, CreateQuestPage>();
+            builder.Services.AddViewModelWithPage<AskForNameViewModel, AskForNameView>();
 
             //Ensure database exists
             using(var scope =  builder.Services.BuildServiceProvider())
@@ -52,8 +54,6 @@ namespace ApostlePath
                 Task.Run(dataContext.SeedData).Wait();
 #endif
             }
-
-
 
             return builder.Build();
         }

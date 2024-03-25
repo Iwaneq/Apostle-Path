@@ -19,7 +19,7 @@
                 HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span FontFamily="Rubik" Text="Welcome Iwan" />
+                        <Span FontFamily="Rubik" Text="{Binding Name, StringFormat='Welcome {0}'}" />
                         <Span
                             FontFamily="Rubik"
                             Text="{Binding DisciplineTitle, StringFormat=' The {0}'}"

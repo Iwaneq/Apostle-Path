@@ -1,6 +1,8 @@
 ﻿using ApostlePath.DataAccess.Dictionary;
 using ApostlePath.DataAccess.Repository;
 using ApostlePath.Factory;
+using ApostlePath.View;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -29,6 +31,7 @@ namespace ApostlePath.ViewModel
 
         public int DisciplineLevel => Quests.Sum(x => x.Level);
         public string DisciplineTitle => GetDisciplineTitle();
+        public string Name => Preferences.Get("Name", "");
 
         public MainViewModel(IQuestsRepository questsRepository, IQuestViewModelFactory questViewModelFactory)
         {
@@ -38,6 +41,12 @@ namespace ApostlePath.ViewModel
             ReloadQuestsCommand = new RelayCommand(LoadQuests);
             NavigateToLevelsInfoPageCommand = new AsyncRelayCommand(NavigateToLevelsInfoPage);
             NavigateToCreateQuestPageCommand = new AsyncRelayCommand(NavigateToCreateQuestPage);
+
+            //Check if name has been already set
+            if (!Preferences.Default.ContainsKey("Name"))
+            {
+                Shell.Current.GoToAsync("/AskForName");
+            }
         }
 
         private void LoadQuests()
@@ -53,6 +62,7 @@ namespace ApostlePath.ViewModel
 
             OnPropertyChanged(nameof(DisciplineLevel));
             OnPropertyChanged(nameof(DisciplineTitle));
+            OnPropertyChanged(nameof(Name));
         }
 
         private string GetDisciplineTitle()
